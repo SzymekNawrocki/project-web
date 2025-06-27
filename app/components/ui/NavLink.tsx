@@ -7,14 +7,18 @@ type NavLinkProps = {
 };
 
 export const NavLink = (props: NavLinkProps) => {
-  const navLinkClasses =
-    "gradient-hover relative inline-block overflow-hidden text-2xl text-white after:absolute after:left-0 after:top-0 after:h-full after:w-0 after:whitespace-nowrap after:bg-gradient-to-r after:from-primary after:to-bg after:bg-clip-text after:text-transparent after:content-[attr(data-text)] hover:after:w-full";
+  const navLinkClasses = `
+    relative inline-block text-2xl text-white
+    after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0
+    after:bg-[#CAB05B] after:transition-all after:duration-300
+    hover:after:w-full
+  `;
 
   return (
     <Link
       href={props.href}
       className={navLinkClasses}
-      data-text={props.children}
+      onClick={props.onClick}
     >
       {props.children}
     </Link>

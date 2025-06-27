@@ -8,7 +8,6 @@ export default function KnowledgePage() {
     const [isMobile, setIsMobile] = useState(false)
     const [loading, setLoading] = useState(true)
 
-    // Sprawdzenie czy urządzenie to mobile
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 640)
         check()
@@ -16,13 +15,11 @@ export default function KnowledgePage() {
         return () => window.removeEventListener('resize', check)
     }, [])
 
-    // Sztuczne opóźnienie ładowania: 1,5 sekundy
     useEffect(() => {
         const timeout = setTimeout(() => setLoading(false), 1500)
         return () => clearTimeout(timeout)
     }, [])
 
-    // Blokowanie scrolla na desktopie
     useEffect(() => {
         if (loading || isMobile) return
 
@@ -32,7 +29,6 @@ export default function KnowledgePage() {
         }
     }, [loading, isMobile])
 
-    // Panel ładowania (min. 1,5 sekundy)
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-bg text-primary text-xl font-semibold gap-6">

@@ -1,5 +1,5 @@
 'use client'
-
+import { ClerkProvider } from '@clerk/nextjs';
 import "../styles/globals.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
@@ -10,30 +10,33 @@ import { usePathname } from 'next/navigation';
 import { Navbar } from "@/app/components/sections/Navbar";
 import { NavbarMobile } from "@/app/components/sections/mobile/NavbarMobile";
 import { Footer } from "@/app/components/sections/Footer";
+import { plPL } from '@clerk/localizations';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    return (
-        <html lang="pl">
-        <body className="bg-bg text-secondary font-sans">
-        {!pathname.startsWith("/knowledge") && (
+  return (
+    <ClerkProvider localization={plPL}>
+      <html lang="pl" className="h-full">
+        <body className="bg-bg text-secondary font-sans h-full flex flex-col min-h-screen">
+          {!pathname.startsWith("/knowledge") && (
             <div className="hidden sm:block">
-                <Navbar />
+              <Navbar />
             </div>
-        )}
-        <div className="block sm:hidden">
+          )}
+          <div className="block sm:hidden">
             <NavbarMobile />
-        </div>
+          </div>
 
-        {children}
+          <main className="flex-grow overflow-auto">
+            {children}
+          </main>
 
-        {!pathname.startsWith("/knowledge") && (
-            <div className="hidden sm:block">
-                <Footer />
-            </div>
-        )}
+          {!pathname.startsWith("/knowledge") && (
+            <Footer />
+          )}
         </body>
-        </html>
-    );
+      </html>
+    </ClerkProvider>
+  );
 }

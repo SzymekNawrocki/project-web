@@ -7,7 +7,6 @@ export const Footer = () => {
 
     return (
         <footer className="relative bg-bg text-secondary text-center z-10 flex flex-col items-center justify-start px-4 pt-8 pb-4 -mt-12">
-            {/* Wiszące logo dokładnie na granicy */}
             <div className="absolute top-0 translate-y-[-50%]">
                 <Image
                     src="/assets/nav/logo.png"
@@ -18,7 +17,6 @@ export const Footer = () => {
                 />
             </div>
 
-            {/* Tekst z buforem pod logo */}
             <p className="text-xs text-primary mb-1 mt-4">
                 Strona stworzona przez fanów dla fanów. Wiedźmin: Stary Świat to przygoda, którą dzielimy razem.
             </p>

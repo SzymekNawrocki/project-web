@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/localizations": "^3.17.1",
+    "@clerk/nextjs": "^6.23.1",
     "@fontsource/dm-sans": "^5.2.5",
     "@fontsource/outfit": "^5.2.5",
     "@fontsource/roboto": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@prisma/client": "^6.10.1",
+    "axios": "^1.10.0",
     "framer-motion": "^12.19.2",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.513.0",
@@ -20,13 +24,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-pageflip": "^2.0.3",
-    "use-image": "^1.1.4"
+    "use-image": "^1.1.4",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
     "@types/react": "^19.1.2",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0",
+    "prisma": "^6.10.1",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.4.0"
   }

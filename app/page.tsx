@@ -8,6 +8,7 @@ import { AboutMobile } from "@/app/components/sections/mobile/AboutMobile"
 
 import { Outro } from "@/app/components/sections/Outro"
 import { OutroMobile} from "@/app/components/sections/mobile/OutroMobile";
+import { SignIn } from "@clerk/nextjs"
 
 export default function Home() {
     return (
