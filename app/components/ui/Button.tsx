@@ -1,42 +1,33 @@
-'use client'
+import Link from "next/link";
 
-import React from 'react'
-import Link from 'next/link'
-
-type ButtonProps =
-    | {
-    children: React.ReactNode
-    href: string
-    className?: string
-}
-    | {
-    children: React.ReactNode
-    onClick?: () => void
-    type?: 'button' | 'submit' | 'reset'
-    disabled?: boolean
-    className?: string
-}
+type ButtonProps = {
+  children: React.ReactNode;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  href?: string;
+};
 
 export const Button = (props: ButtonProps) => {
-    if ('href' in props) {
-        return (
-            <Link
-                href={props.href}
-                className={`btn-primary inline-block ${props.className ?? ''}`}
-            >
-                {props.children}
-            </Link>
-        )
-    }
+  const buttonClasses =
+    "transition-all duration-300 inline-block rounded-lg border-2 border-transparent text-xl text-text bg-primary px-6 py-3 font-semibold hover:text-primary hover:bg-bg hover:border-primary disabled:bg-stone-200 disabled:text-stone-600 disabled:border-stone-200";
 
+  if (props.href) {
     return (
-        <button
-            type={props.type ?? 'button'}
-            onClick={props.onClick}
-            disabled={props.disabled}
-            className={`btn-primary ${props.disabled ? 'opacity-50 cursor-not-allowed' : ''} ${props.className ?? ''}`}
-        >
-            {props.children}
-        </button>
-    )
-}
+      <Link href={props.href} className={buttonClasses}>
+        {props.children}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      type={props.type ?? "button"}
+      disabled={props.disabled}
+      onClick={props.onClick}
+      className={buttonClasses}
+    >
+      {props.children}
+    </button>
+  );
+};
