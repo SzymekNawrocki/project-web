@@ -86,7 +86,7 @@ export default function Home() {
             </div>
             <div className="flex gap-2">
               <Button onClick={() => handleEdit(player)}>Edytuj</Button>
-              <Button onClick={() => handleDelete(player.id)} className="bg-red-600 hover:bg-red-700">
+              <Button onClick={() => handleDelete(player.id)}>
                 Usuń
               </Button>
             </div>
