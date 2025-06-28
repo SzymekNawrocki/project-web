@@ -6,7 +6,8 @@ import { Button } from './Button';
 export default function Home() {
   const [name, setName] = useState('');
   const [character, setCharacter] = useState('');
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<any[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   const fetchPlayers = async () => {
     const res = await fetch('/api/players');
@@ -21,20 +22,40 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const method = editingId ? 'PATCH' : 'POST';
+    const payload = editingId
+      ? { id: editingId, name, character }
+      : { name, character };
+
     await fetch('/api/players', {
-      method: 'POST',
+      method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, character }),
+      body: JSON.stringify(payload),
     });
 
     setName('');
     setCharacter('');
+    setEditingId(null);
     fetchPlayers();
+  };
+
+  const handleDelete = async (id: string) => {
+    await fetch(`/api/players?id=${id}`, {
+      method: 'DELETE',
+    });
+
+    fetchPlayers();
+  };
+
+  const handleEdit = (player: any) => {
+    setName(player.name);
+    setCharacter(player.character);
+    setEditingId(player.id);
   };
 
   return (
     <main className="p-8">
-      <h1 className="text-2xl mb-4">Lista Graczy</h1>
+      <h1 className="text-2xl mb-4">{editingId ? 'Edytuj Gracza' : 'Dodaj Gracza'}</h1>
       <form onSubmit={handleSubmit} className="mb-6 space-y-4">
         <input
           type="text"
@@ -52,16 +73,23 @@ export default function Home() {
           className="border p-2 w-full text-black"
           required
         />
-        <Button type="submit">
-          Dodaj Gracza
-        </Button>
+        <Button type="submit">{editingId ? 'Zapisz zmiany' : 'Dodaj Gracza'}</Button>
       </form>
 
       <h2 className="text-xl mb-2">Gracze</h2>
       <ul className="space-y-2">
         {players.map((player: any) => (
-          <li key={player.id} className="border p-2 rounded">
-            {player.name}  {player.character} (Dołączył: {new Date(player.joinedAt).toLocaleString()})
+          <li key={player.id} className="border p-2 rounded flex justify-between items-center">
+            <div>
+              <strong>{player.name}</strong> jako <em>{player.character}</em> <br />
+              <small>Dołączył: {new Date(player.joinedAt).toLocaleString()}</small>
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={() => handleEdit(player)}>Edytuj</Button>
+              <Button onClick={() => handleDelete(player.id)} className="bg-red-600 hover:bg-red-700">
+                Usuń
+              </Button>
+            </div>
           </li>
         ))}
       </ul>

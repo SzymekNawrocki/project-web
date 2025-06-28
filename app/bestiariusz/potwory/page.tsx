@@ -1,4 +1,3 @@
-// app/bestiariusz/page.tsx
 import React from 'react';
 
 type Monster = {
@@ -48,20 +47,35 @@ export default async function Bestiary() {
   const monsters = await getMonsters();
 
   return (
-    <div className="p-6 py-12 md:py-24 max-w-4xl mx-auto text-center">
-      <h1 className="text-4xl font-bold mb-8">Bestiariusz</h1>
+    <div className="p-6 py-12 md:py-24 max-w-4xl mx-auto text-center" style={{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }}>
+      <h1 className="text-4xl font-bold mb-8" style={{ color: 'var(--color-primary)' }}>
+        Bestiariusz
+      </h1>
 
       <div className="space-y-8">
         {monsters.map((monster) => (
           <div
             key={monster.name}
-            className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 flex flex-col items-center text-center"
+            className="shadow-lg rounded-2xl p-6 border flex flex-col items-center text-center"
+            style={{
+              backgroundColor: 'var(--color-secondary)',
+              borderColor: 'var(--color-dark)',
+              color: 'var(--color-text)',
+            }}
           >
-            <h2 className="text-2xl font-semibold text-gray-800">{monster.name}</h2>
-            <p className="text-sm text-gray-500 italic mb-4">{monster.category}</p>
+            <h2 className="text-2xl font-semibold mb-1" style={{ color: 'var(--color-dark)' }}>
+              {monster.name}
+            </h2>
+            <p className="text-sm italic mb-4" style={{ color: 'var(--color-primary)' }}>
+              {monster.category}
+            </p>
 
             {monster.description?.raw?.children?.map((paragraph, index) => (
-              <p key={index} className="text-gray-700 mb-2 leading-relaxed max-w-prose">
+              <p
+                key={index}
+                className="mb-2 leading-relaxed max-w-prose"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {paragraph.children?.map((child, idx) => (
                   <span key={idx}>{child.text}</span>
                 ))}

@@ -13,7 +13,6 @@ export default function Bestiary() {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl">
-        {/* Karta 1 */}
         <div
           className="cursor-pointer group rounded-2xl overflow-hidden hover:scale-[1.03] transition-transform shadow-xl bg-black"
           onClick={() => router.push('bestiariusz/szkoly-wiedzminskie')}
@@ -35,7 +34,6 @@ export default function Bestiary() {
           </div>
         </div>
 
-        {/* Karta 2 */}
         <div
           className="cursor-pointer group rounded-2xl overflow-hidden hover:scale-[1.03] transition-transform shadow-xl bg-black"
           onClick={() => router.push('/bestiariusz/potwory')}
