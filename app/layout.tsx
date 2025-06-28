@@ -18,24 +18,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider localization={plPL}>
       <html lang="pl" className="h-full">
-        <body className="bg-bg text-secondary font-sans h-full flex flex-col min-h-screen">
-          {!pathname.startsWith("/knowledge") && (
-            <div className="hidden sm:block">
-              <Navbar />
-            </div>
-          )}
-          <div className="block sm:hidden">
-            <NavbarMobile />
-          </div>
-
-          <main className="flex-grow overflow-auto">
-            {children}
-          </main>
-
-          {!pathname.startsWith("/knowledge") && (
-            <Footer />
-          )}
-        </body>
+    <body className="bg-bg text-secondary font-sans h-full flex flex-col min-h-screen">
+  {!pathname.startsWith("/knowledge") && (
+    <div className="hidden sm:block">
+      <Navbar />
+    </div>
+  )}
+  <div className="block sm:hidden">
+    <NavbarMobile />
+  </div>
+  <main className="flex-grow">
+    {children}
+  </main>
+  {!pathname.startsWith("/knowledge") && <Footer />}
+</body>
       </html>
     </ClerkProvider>
   );

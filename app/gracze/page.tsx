@@ -1,5 +1,4 @@
 import PlayerForm from "../components/ui/PlayerForm"
-import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 
 export default function GraczePage() {
   return (

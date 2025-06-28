@@ -53,18 +53,17 @@ async function getCharacters(): Promise<Character[]> {
 export default async function Schools() {
   const characters = await getCharacters();
 
- return (
-    <div className="max-w-6xl mx-auto p-6">
+  return (
+    <div className="max-w-6xl mx-auto p-6 py-12 md:py-24">
       <h1 className="text-5xl font-bold mb-12 text-center">Wiedźmińskie Szkoły</h1>
       <div className="grid gap-12">
         {characters.map((character) => (
           <div
             key={character.name}
-            className=" p-8 border border-gray-200 rounded-2xl shadow-xl flex flex-col gap-6 items-center text-center"
+            className="p-8 border border-gray-200 rounded-2xl shadow-xl flex flex-col gap-6 items-center text-center"
           >
             <div>
               <h2 className="text-3xl font-semibold mb-2">{character.name}</h2>
-              <p className="text-white italic mb-4">{character.school}</p>
               {character.description?.raw?.children?.map((paragraph, index) => (
                 <p key={index} className="text-white mb-2 leading-relaxed">
                   {paragraph.children?.map((child, idx) => (

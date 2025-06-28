@@ -2,27 +2,27 @@
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { NavbarMobile } from "../sections/mobile/NavbarMobile";
-import { usePathname } from 'next/navigation';
 import { NavLink } from "../ui/NavLink";
+import Link from "next/link";
 
 export const Navbar = () => {
-  const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-30 w-full bg-[#262626] bg-opacity-95 backdrop-blur-md shadow-md px-6 sm:px-8 py-4 flex items-center justify-between flex-wrap sm:flex-nowrap">
-      <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4">
-        <Image
-          src="/assets/nav/logo.png"
-          alt="logo"
-          width={56}
-          height={56}
-          className="w-14 h-auto"
-          priority
-        />
-        <NavLink href="/">
-          OldWorld Codex
-        </NavLink>
-      </div>
+    <nav className="relative top-0 z-30 w-full bg-[#262626] bg-opacity-95 backdrop-blur-md shadow-md px-6 sm:px-8 py-4 flex items-center justify-between flex-wrap sm:flex-nowrap">
+  <Link href="/" className="flex items-center gap-3">
+  <Image
+    src="/assets/nav/logo.png"
+    alt="logo"
+    width={100}
+    height={100}
+    className="w-10 h-auto"
+    priority
+  />
+  <span className="text-3xl font-semibold text-[#CAB05B]">
+    OldWorld Codex
+  </span>
+</Link>
+
 
       <ul className="hidden sm:flex flex-row gap-8 text-[#CAB05B] items-center">
         <li>

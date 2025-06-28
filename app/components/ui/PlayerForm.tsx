@@ -34,22 +34,22 @@ export default function Home() {
 
   return (
     <main className="p-8">
-      <h1 className="text-2xl mb-4">Dodaj Gracza</h1>
+      <h1 className="text-2xl mb-4">Lista Graczy</h1>
       <form onSubmit={handleSubmit} className="mb-6 space-y-4">
         <input
           type="text"
-          placeholder="Imię"
+          placeholder="Twoja godność..."
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border p-2 w-full"
+          className="border p-2 w-full text-black"
           required
         />
         <input
           type="text"
-          placeholder="Character"
+          placeholder="Postać, którą grasz..."
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
-          className="border p-2 w-full"
+          className="border p-2 w-full text-black"
           required
         />
         <Button type="submit">
@@ -61,7 +61,7 @@ export default function Home() {
       <ul className="space-y-2">
         {players.map((player: any) => (
           <li key={player.id} className="border p-2 rounded">
-            {player.name} as {player.character} (Dołączył: {new Date(player.joinedAt).toLocaleString()})
+            {player.name}  {player.character} (Dołączył: {new Date(player.joinedAt).toLocaleString()})
           </li>
         ))}
       </ul>

@@ -48,17 +48,20 @@ export default async function Bestiary() {
   const monsters = await getMonsters();
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 py-12 md:py-24 max-w-4xl mx-auto text-center">
       <h1 className="text-4xl font-bold mb-8">Bestiariusz</h1>
 
       <div className="space-y-8">
         {monsters.map((monster) => (
-          <div key={monster.name} className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+          <div
+            key={monster.name}
+            className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 flex flex-col items-center text-center"
+          >
             <h2 className="text-2xl font-semibold text-gray-800">{monster.name}</h2>
             <p className="text-sm text-gray-500 italic mb-4">{monster.category}</p>
 
             {monster.description?.raw?.children?.map((paragraph, index) => (
-              <p key={index} className="text-gray-700 mb-2 leading-relaxed">
+              <p key={index} className="text-gray-700 mb-2 leading-relaxed max-w-prose">
                 {paragraph.children?.map((child, idx) => (
                   <span key={idx}>{child.text}</span>
                 ))}
