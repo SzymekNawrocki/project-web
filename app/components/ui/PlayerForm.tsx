@@ -8,6 +8,7 @@ export default function Home() {
   const [character, setCharacter] = useState('');
   const [players, setPlayers] = useState<any[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchPlayers = async () => {
     const res = await fetch('/api/players');
@@ -19,8 +20,20 @@ export default function Home() {
     fetchPlayers();
   }, []);
 
+  const isValidInput = (value: string) => {
+    const regex = /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s]{3,16}$/;
+    return regex.test(value);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isValidInput(name) || !isValidInput(character)) {
+      setError('Imię i postać muszą mieć od 3 do 16 liter i zawierać tylko litery.');
+      return;
+    }
+
+    setError(null);
 
     const method = editingId ? 'PATCH' : 'POST';
     const payload = editingId
@@ -51,6 +64,7 @@ export default function Home() {
     setName(player.name);
     setCharacter(player.character);
     setEditingId(player.id);
+    setError(null);
   };
 
   return (
@@ -73,6 +87,7 @@ export default function Home() {
           className="border p-2 w-full text-black"
           required
         />
+        {error && <p className="text-red-500">{error}</p>}
         <Button type="submit">{editingId ? 'Zapisz zmiany' : 'Dodaj Gracza'}</Button>
       </form>
 
