@@ -53,31 +53,31 @@ async function getCharacters(): Promise<Character[]> {
 export default async function Schools() {
   const characters = await getCharacters();
 
-  return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-8">Postacie</h1>
-      <div className="grid gap-8">
+ return (
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-5xl font-bold mb-12 text-center">Wiedźmińskie Szkoły</h1>
+      <div className="grid gap-12">
         {characters.map((character) => (
           <div
             key={character.name}
-            className="bg-white p-6 border rounded-xl shadow-md flex flex-col md:flex-row gap-4"
+            className=" p-8 border border-gray-200 rounded-2xl shadow-xl flex flex-col gap-6 items-center text-center"
           >
-            <img
-              src={character.image?.url}
-              alt={character.name}
-              className="w-full md:w-48 h-auto object-cover rounded-lg"
-            />
             <div>
-              <h2 className="text-2xl font-semibold">{character.name}</h2>
-              <p className="text-gray-500 italic mb-4">{character.school}</p>
+              <h2 className="text-3xl font-semibold mb-2">{character.name}</h2>
+              <p className="text-white italic mb-4">{character.school}</p>
               {character.description?.raw?.children?.map((paragraph, index) => (
-                <p key={index} className="text-gray-700 mb-2">
+                <p key={index} className="text-white mb-2 leading-relaxed">
                   {paragraph.children?.map((child, idx) => (
                     <span key={idx}>{child.text}</span>
                   ))}
                 </p>
               ))}
             </div>
+            <img
+              src={character.image?.url}
+              alt={character.name}
+              className="w-full max-w-lg h-auto rounded-xl object-cover shadow-md"
+            />
           </div>
         ))}
       </div>
